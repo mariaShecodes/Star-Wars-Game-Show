@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
+
+
+.background-home {
+  background-image: url('../assets/image/background-home.jpg');
+  background-size: cover;
+  width: 100vmax;
+  height: 760px;
+  font-family: 'Exo 2', sans-serif;
+}
+.container-home {
+  text-align: center;
+  padding-top: 2em;
+  color: rgb(235, 235, 235);
+}
+h1 {
+  font-family: 'Audiowide', cursive;
+}
+.p-home {
+  text-align: center;
+  margin: 2em;
+  font-size: 1.3em;
+}

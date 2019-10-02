@@ -1,0 +1,47 @@
+form, .tittle-form {
+  font-family: 'Exo 2', sans-serif;
+}
+.header-form {
+  display: flex;
+  justify-content: space-between;
+}
+.form-control {
+  border: 0;
+  border-radius: 0px;
+  outline: none;
+  border-bottom: 1px solid #202020
+}
+.form-control:focus, .button-form:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.close-modal {
+  background-color: transparent;
+  color: #202020;
+  border: 0px;
+}
+.close-modal:hover {
+  background-color: transparent;
+  border: .8px solid #202020;
+  color: #202020;
+  border-radius: 5px;
+}
+.box-button-send {
+  display: flex;
+}
+.button-send {
+  background-color: #202020;
+  color: rgb(235, 235, 235);
+  border: 0px;
+  border-radius: 25px;
+  padding: .3em 1em;
+  margin: 0 auto;
+}
+.button-send:hover {
+  background-color: transparent;
+  color: #202020;
+  border: 1px solid #202020;
+}

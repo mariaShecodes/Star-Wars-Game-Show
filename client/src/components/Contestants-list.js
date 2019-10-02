@@ -22,7 +22,7 @@ class ContestantList extends Component {
     render() {
         return (
             <div>
-                <h1>Listado de concursantes</h1>
+                <h2>Listado de concursantes</h2>
                 {this.state.contestants.map(contestant => <ContestantCard key={contestant._id} {...contestant} />)}
             </div>
         )

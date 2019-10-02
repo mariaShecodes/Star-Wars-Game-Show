@@ -5,7 +5,7 @@ const contestantSchema = new Schema({
 
     firstName: { type: String, maxlength:15, required: true },
     lastName: { type: String, maxlength:15, required: true },
-    dateBirth: {type: String, required: true },
+    dateBirth: {type: String },
     mobile: { type: Number, required: true },
     country: { type: String, default: 'Spain'},
     email: { type: String, required: true},
@@ -14,7 +14,7 @@ const contestantSchema = new Schema({
         enum: ['Luke Skywalker', 'C-3PO', 'R2-D2', 'Darth Vader',
             'Leia Organa', 'Owen Lars', 'Beru Whitesun lars', 'R5-D4',
             'Biggs Darklighter', 'Obi-Wan Kenobi'],
-        required: true
+        
     },
     imageUrl: { type: String },
     description: { type: String}

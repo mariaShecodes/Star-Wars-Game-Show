@@ -12,6 +12,6 @@ export default class Services {
 
     getContestants = () => this.service.get('/getAllContestants')
     getOneContestant = id => this.service.get(`/getOneContestant/${id}`)
-    postContestant = theNewCoaster => this.service.post('/postContestant', theNewCoaster)
+    postContestant = theNewContestant => this.service.post('/postContestant', theNewContestant)
     handleUpload = theFile => this.service.post('/upload', theFile)
 }
