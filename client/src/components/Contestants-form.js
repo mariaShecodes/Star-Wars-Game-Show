@@ -12,12 +12,13 @@ class ContestantForm extends Component {
       firstName: '',
       lastName: '',
       dateBirth: '',
-      country: 'SPAIN',
+      country: '',
       mobile: '',
       email: '',
       characters: '',
       imageUrl: '',
-      description: ''
+      description: '',
+      uploading: false
     }
     this.service = new Services()
   }
@@ -26,21 +27,33 @@ class ContestantForm extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  handleFileUpload = e => {
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    this.service.handleUpload(uploadData)
+        .then(this.setState({ uploading: true }))
+        .then(response => this.setState({ imageUrl: response.data.secure_url, uploading: false }))
+        .catch(err => console.log(err))
+  }
+
   handleFormSubmit = e => {
     e.preventDefault()
     this.service.postContestant(this.state)
       .then( x => {
         console.log(x)
         this.props.closeModal()
+        this.props.showToast()
       })
       .catch(err => console.log('error', err))
   }
 
   render() {
+
     return (
       <>
         <div className="header-form">
-          <h4 className="tittle-form">Registro Participantes</h4>
+          <h4 className="tittle-form">Registro de Participantes</h4>
           <button onClick={this.props.closeModal} className="button-form close-modal">X</button>
         </div>
 
@@ -50,31 +63,36 @@ class ContestantForm extends Component {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label className="title">Nombre</Form.Label>
-              <Form.Control name="firstName" type="text" className="form-control" id="input-firsttName" onChange={this.handleChangeInput} placeholder="Carlos"/>
+              <Form.Control name="firstName" type="text" className="form-control" id="input-firsttName" onChange={this.handleChangeInput} placeholder="Carlos" required/>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label className="title">Apellido</Form.Label>
-              <Form.Control name="lastName" type="text" className="form-control" id="input-lasttName" onChange={this.handleChangeInput} placeholder="Rodríguez"/>
+              <Form.Control name="lastName" type="text" className="form-control" id="input-lasttName" onChange={this.handleChangeInput} placeholder="Rodríguez" required/>
             </Form.Group>
           </Form.Row>
+
           <Form.Row>
-            <Form.Group controlId="formGridDateBirth">
+            <Form.Group as={Col} controlId="formGridDateBirth">
               <Form.Label className="title">Fecha de Nacimiento</Form.Label>
-              <Form.Control name="dateBirth" type="date" className="form-control" id="input-dateBirth" onChange={this.handleChangeInput} placeholder="12/05/2000"/>
+              <Form.Control name="dateBirth" type="date" className="form-control" id="input-dateBirth" onChange={this.handleChangeInput} placeholder="12/05/2000" required/>
             </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group controlId="formGridMobile">
+            <Form.Group as={Col} controlId="formGridMobile">
               <Form.Label className="title">Teléfono móvil</Form.Label>
-              <Form.Control name="mobile" type="text" className="form-control" id="input-mobile" onChange={this.handleChangeInput} placeholder="666 555 444"/>
+              <Form.Control name="mobile" type="text" className="form-control" id="input-mobile" onChange={this.handleChangeInput} placeholder="666 555 444" required/>
             </Form.Group>
           </Form.Row>
+
           <Form.Row>
-            <Form.Group controlId="formGridEmail">
+            <Form.Group as={Col} controlId="formGridCountry">
+              <Form.Label className="title">País</Form.Label>
+              <Form.Control name="country" type="text" className="form-control" id="input-country" onChange={this.handleChangeInput} placeholder="España" />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label className="title">Email</Form.Label>
-              <Form.Control name="email" type="email" className="form-control" id="input-email" onChange={this.handleChangeInput} placeholder="hello@starwars.es"/>
+              <Form.Control name="email" type="email" className="form-control" id="input-email" onChange={this.handleChangeInput} placeholder="hello@starwars.es" required/>
             </Form.Group>
           </Form.Row>
+          
           <Form.Row>
             <Form.Group controlId="formGridImage">
               <Form.Label className="title">Imagen</Form.Label>

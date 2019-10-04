@@ -64,6 +64,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 // Base URL's
 app.use('/', require('./routes/index'))
 app.use('/contestant', require('./routes/contestant.routes'))
+app.use('/contestant', require('./routes/file-upload.routes'))
 
 
 // app.use((req, res) => {

@@ -5,9 +5,9 @@ const contestantSchema = new Schema({
 
     firstName: { type: String, maxlength:15, required: true },
     lastName: { type: String, maxlength:15, required: true },
-    dateBirth: {type: String },
+    dateBirth: {type: String, required: true },
     mobile: { type: Number, required: true },
-    country: { type: String, default: 'Spain'},
+    country: { type: String, default: 'España' },
     email: { type: String, required: true},
     character: {
         type: String,

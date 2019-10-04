@@ -14,4 +14,6 @@ export default class Services {
     getOneContestant = id => this.service.get(`/getOneContestant/${id}`)
     postContestant = theNewContestant => this.service.post('/postContestant', theNewContestant)
     handleUpload = theFile => this.service.post('/upload', theFile)
+    deleteContestant = id => this.service.get(`/delete/${id}`)
+    updateContestant = id => this.service.post(`/edit/${id}`)
 }

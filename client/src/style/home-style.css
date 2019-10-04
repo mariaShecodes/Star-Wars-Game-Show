@@ -1,23 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
 
-
 .background-home {
-  background-image: url('../assets/image/background-home.jpg');
+  background-image: url('../assets/image/agnieszka-kowalczyk-c0VRNWVEjOA-unsplash.jpg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
   background-size: cover;
   width: 100vmax;
-  height: 760px;
+  height: 92vh;
   font-family: 'Exo 2', sans-serif;
 }
 .container-home {
   text-align: center;
-  padding-top: 2em;
-  color: rgb(235, 235, 235);
+  padding-top: 3em;
+  color: #202020;
 }
 h1 {
-  font-family: 'Audiowide', cursive;
+  font-family: 'Audiowide', sans-serif ;
+  font-size: 3em;
 }
 .p-home {
-  text-align: center;
-  margin: 2em;
+  width: 60%;
+  margin: 0 auto;
   font-size: 1.3em;
+  padding-top: 4em;
+  padding-bottom: 1em;
 }

@@ -1,0 +1,35 @@
+.image {
+  width: 100px;
+}
+.elements-details {
+  display: flex;
+}
+.form-update {
+  width: 100%
+}
+.update-control {
+  width: 100%;
+  border: 0;
+  border-radius: 0px;
+  outline: none;
+}
+.update-control:hover {
+  border-bottom: 1px solid #202020;
+}
+
+
+.button-update {
+  background-color: transparent;
+  color: #202020;
+  border: 1px solid #202020;
+  border-radius: 25px;
+  padding: .3em 1em;
+  margin: 0 auto;
+
+}
+.button-update:hover {
+  background-color: #202020;
+  color: rgb(235, 235, 235);
+  border: 0px;
+
+}
