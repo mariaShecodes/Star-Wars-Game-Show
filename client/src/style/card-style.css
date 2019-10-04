@@ -27,11 +27,17 @@
 .info-contestant {
   padding:1em 0 0 1em;
 }
-.name-contestant {
-  font-weight: 300;
+.order-data {
+  display: flex;
+  justify-content: space-between;
+  padding: 0em 1.8em 0 .8em;
 }
-.character {
+.data {
   font-size: .8em;
+  margin-left: 5px;
+}
+.colocation {
+  display: flex;
 }
 .button-details {
   background-color: #464646;

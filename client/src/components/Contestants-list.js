@@ -36,7 +36,7 @@ class ContestantList extends Component {
       <>
       <Navbar />
         <div className="container">
-          <h2 className="title-list">Listado de concursantes</h2>
+          <h2 className="title-page">Listado de concursantes</h2>
             <div className="row">
               {this.state.contestants.map((contestant, idx) => <ContestantCard key={contestant._id} {...contestant} 
               delete={this.deleteContestant.bind(this)}/>)}

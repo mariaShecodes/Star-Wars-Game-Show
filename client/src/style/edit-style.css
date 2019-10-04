@@ -1,23 +1,29 @@
 .image {
-  width: 100px;
+  width: 200px;
+  border-radius: 50%;
 }
 .elements-details {
   display: flex;
+ 
+  font-family: 'Exo 2', sans-serif;
+  padding-top: 2em;
+}
+.name-contestant {
+  text-align: center;
+}
+.name {
+  padding-top: 1em;
 }
 .form-update {
-  width: 100%
+  width: 120%;
 }
 .update-control {
   width: 100%;
   border: 0;
   border-radius: 0px;
   outline: none;
-}
-.update-control:hover {
   border-bottom: 1px solid #202020;
 }
-
-
 .button-update {
   background-color: transparent;
   color: #202020;
@@ -25,11 +31,16 @@
   border-radius: 25px;
   padding: .3em 1em;
   margin: 0 auto;
-
 }
 .button-update:hover {
   background-color: #202020;
   color: rgb(235, 235, 235);
   border: 0px;
-
+}
+.link-back {
+  color: #202020;
+  margin-left: 1em;
+}
+.link-back:hover {
+  color: rgb(0, 0, 0);
 }

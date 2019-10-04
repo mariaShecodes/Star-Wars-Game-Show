@@ -23,19 +23,18 @@ router.post('/postContestant', (req, res) => {
 
 // EDITAR UN CONCURSANTE
 router.post('/edit/:id', (req, res) => {
-  const {mobile, country, email, description} = req.body
+  const { mobile, country, email } = req.body
 
   Contestant.findByIdAndUpdate(req.params.id, 
     {
       mobile,
       country,
-      email,
-      description
-            
+      email,      
     })
     .then(theUpdateContestant => res.json(theUpdateContestant))
     .catch(err => console.log('Error en la edición', err))
 })
+
 
 //  ELIMINAR UN CONCURSANTE
 router.get('/delete/:id', (req, res) => {

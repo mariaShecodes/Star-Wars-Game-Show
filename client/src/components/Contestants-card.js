@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarAlt, faMapMarkerAlt, faMobileAlt, faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons'
 
 import '../style/card-style.css'
 
@@ -25,16 +27,44 @@ class ContestantCard extends Component {
 
   render() {
 
-    const { _id, firstName, lastName, character, imageUrl } = this.props
+    const { _id, firstName, lastName, dateBirth, mobile, country, email, character, imageUrl } = this.props
+    const photo = this.props.imageUrl == '' ? 'http://hdwpro.com/wp-content/uploads/2018/01/3D-Star-Wars.jpg' : imageUrl
 
       return (
       <div className='card'>
-        <img src={imageUrl} alt="Fotografia del concursante" className="photo"/>
+
+        <img src={photo} alt="Fotografia del concursante" className="photo"/>
         <div className="info-contestant">
-          <h4 className="name-contestant">{firstName} {lastName}</h4>
-          <p className="character">Personaje elegido: {character}</p>
+          <h4 className="name-complet-contestant">{firstName} {lastName}</h4>
+          <p className="data">Personaje elegido: {character}</p>
+          <hr></hr>
+          <p>Datos personales:</p>
+          <div className="personal-data">
+            <div className="order-data">
+              <div className="colocation">
+                <FontAwesomeIcon icon={faCalendarAlt} />
+                <p className="data">{dateBirth}</p>
+              </div>
+              <div className="colocation">
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+                <p className="data">{country}</p>
+              </div> 
+            </div>
+            <div className="order-data">
+              <div className="colocation">
+                <FontAwesomeIcon icon={faMobileAlt} />
+                <p className="data">{mobile}</p>
+              </div>
+              <div className="colocation">
+                <FontAwesomeIcon icon={faEnvelopeOpen} />
+                <p className="data">{email}</p>
+
+              </div>
+            </div>
+          </div>
         </div>
-        <Link to={`/contestants/${_id}`} className="button-details">Ver detalles</Link>
+
+        <Link to={`/edit/${_id}`} className="button-details">Editar</Link>
         <Link key={_id} onClick={this.handleShow} className="button-delete">Eliminar</Link>        
       
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -55,7 +85,6 @@ class ContestantCard extends Component {
       </div>
     )
   }
-
 }
 
 export default ContestantCard

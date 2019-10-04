@@ -15,10 +15,10 @@ class ContestantForm extends Component {
       country: '',
       mobile: '',
       email: '',
-      characters: '',
+      character: '',
       imageUrl: '',
-      description: '',
-      uploading: false
+      uploading: false,
+      swapiAllNames: null
     }
     this.service = new Services()
   }
@@ -46,6 +46,14 @@ class ContestantForm extends Component {
         this.props.showToast()
       })
       .catch(err => console.log('error', err))
+  }
+
+  swapiSelectorPrinter = () => {
+    if(this.state.swapiAllNames == null) {
+      this.service.swapiNames()
+        .then( res => this.setState({swapiAllNames: res.data.results}))
+        .catch(err => console.log('error', err))
+    }
   }
 
   render() {
@@ -85,7 +93,7 @@ class ContestantForm extends Component {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCountry">
               <Form.Label className="title">País</Form.Label>
-              <Form.Control name="country" type="text" className="form-control" id="input-country" onChange={this.handleChangeInput} placeholder="España" />
+              <Form.Control name="country" type="text" className="form-control" id="input-country" onChange={this.handleChangeInput} placeholder="España" required/>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label className="title">Email</Form.Label>
@@ -97,6 +105,15 @@ class ContestantForm extends Component {
             <Form.Group controlId="formGridImage">
               <Form.Label className="title">Imagen</Form.Label>
               <Form.Control name="imageUrl" type="file" className="form-control-image" id="input-img" onChange={this.handleFileUpload} />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group controlId="formGridImage">
+              <p className="title">Personaje a interpretar</p>
+              <select name="character" id="input-character" onChange={this.handleChangeInput}>
+                {this.state.swapiAllNames ? this.state.swapiAllNames.map( character => <option key={character.name} value={character.name}>{character.name}</option>): this.swapiSelectorPrinter()}
+              </select>
             </Form.Group>
           </Form.Row>
           <div class="box-button-send">

@@ -31,7 +31,7 @@ class Home extends Component {
         <div className="background-home">
           <div className="container-home">
             <h1>Star Wars Game Show</h1>
-            <p className="p-home">Aquí irá un texto motivador y maravilloso.
+            <p className="p-home">Aquí irá un texto motivador y maravilloso para registrase como concursante
               "El miedo lleva a la ira, la ira lleva al odio,
               el odio lleva el sufrimiento. Percibo mucho miedo en ti"
             </p>
