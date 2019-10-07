@@ -2,9 +2,9 @@
   font-family: 'Exo 2', sans-serif;
   background-color: white;
   border: .5px solid rgb(233, 233, 233);
-  padding: 0px;
-  max-width: 30%;
-  margin: 12px 1.6%;
+  padding: 0;
+  width: 30%;
+  margin: 16px;
   transition-duration: 0.60s;
   transition-property: transform;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

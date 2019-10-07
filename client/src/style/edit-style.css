@@ -13,6 +13,7 @@
 }
 .name {
   padding-top: 1em;
+  text-transform: capitalize;
 }
 .form-update {
   width: 120%;

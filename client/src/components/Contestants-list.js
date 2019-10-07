@@ -4,6 +4,7 @@ import Services from '../services/contestant.services'
 import Navbar from './Navbar'
 import ContestantCard from './Contestants-card'
 
+
 import '../style/list-style.css'
 
 
@@ -35,12 +36,14 @@ class ContestantList extends Component {
     return (
       <>
       <Navbar />
+      <div className="container-list"> 
         <div className="container">
           <h2 className="title-page">Listado de concursantes</h2>
             <div className="row">
               {this.state.contestants.map((contestant, idx) => <ContestantCard key={contestant._id} {...contestant} 
               delete={this.deleteContestant.bind(this)}/>)}
             </div>
+        </div>
         </div>
       </>
     )

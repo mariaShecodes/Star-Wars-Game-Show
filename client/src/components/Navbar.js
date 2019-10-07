@@ -10,7 +10,7 @@ function Navbar() {
       
       <div className="col-md-3 link">
         <Link to={'/contestants'}  className="link-simple link">Login</Link>
-        <Link className="link-simple link">Signup</Link>
+        {/* <Link className="link-simple link">Signup</Link> */}
       </div>
     </div>
      

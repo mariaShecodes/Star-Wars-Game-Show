@@ -13,11 +13,9 @@ class ContestantDetail extends Component {
     this.state = {
       redirect: false,
       contestant: {},
-      country: '',
-      mobile: '',
-      email: '',
     }
     this.service = new Services()
+    this.handleChangeInput = this.handleChangeInput.bind(this)
   }
 
   componentDidMount() {
@@ -39,15 +37,16 @@ class ContestantDetail extends Component {
   }
 
   handleChangeInput = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({contestant:{ ...this.state.contestant, [e.target.name]: e.target.value }})
+    //this.setState({mobile: e.target.value});
   }
 
   handleFormSubmit = e => {
     e.preventDefault()
     let theUpdateContestant = {
-      country: this.state.country,
-      mobile: this.state.mobile,
-      email: this.state.email
+      country: this.state.contestant.country,
+      mobile: this.state.contestant.mobile,
+      email: this.state.contestant.email
     }
     this.service.updateContestant(this.props.match.params.id, theUpdateContestant)
       .then( x => {
@@ -57,8 +56,8 @@ class ContestantDetail extends Component {
   }
 
   render() {
-    const photo = this.state.contestant.imageUrl == '' ? 'http://hdwpro.com/wp-content/uploads/2018/01/3D-Star-Wars.jpg' : this.state.contestant.imageUrl
-    
+    const photo = this.state.contestant.imageUrl === '' ? 'http://hdwpro.com/wp-content/uploads/2018/01/3D-Star-Wars.jpg' : this.state.contestant.imageUrl
+
     return (
       <>
         <Navbar />
@@ -77,21 +76,21 @@ class ContestantDetail extends Component {
               <Form.Row>
                 <Form.Group controlId="formGridMobile">
                   <Form.Label className="title">Teléfono móvil</Form.Label>
-                  <Form.Control name="mobile" type="text" className="form-control update-control" id="input-mobile" onChange={this.handleChangeInput} placeholder={this.state.contestant.mobile} />
+                  <Form.Control name="mobile" type="text" className="form-control update-control" id="input-mobile" maxlength="9" onChange={this.handleChangeInput} value={this.state.contestant.mobile} />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group controlId="formGridCountry">
                   <Form.Label className="title">País</Form.Label>
-                  <Form.Control name="country" type="text" className="form-control update-control" id="input-country" onChange={this.handleChangeInput} placeholder={this.state.contestant.country} />
+                  <Form.Control name="country" type="text" className="form-control update-control" id="input-country" onChange={this.handleChangeInput} value={this.state.contestant.country} />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group controlId="formGridEmail">
                   <Form.Label className="title">Email</Form.Label>
-                  <Form.Control name="email" type="email" className="form-control update-control" id="input-email" onChange={this.handleChangeInput} placeholder={this.state.contestant.email} />
+                  <Form.Control name="email" type="email" className="form-control update-control" id="input-email" onChange={this.handleChangeInput} value={this.state.contestant.email} />
                 </Form.Group>
               </Form.Row>
 

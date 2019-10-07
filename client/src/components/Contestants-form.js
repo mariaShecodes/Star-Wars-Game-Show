@@ -28,12 +28,13 @@ class ContestantForm extends Component {
   }
 
   handleFileUpload = e => {
+    this.setState({uploading:true})
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
 
     this.service.handleUpload(uploadData)
         .then(this.setState({ uploading: true }))
-        .then(response => this.setState({ imageUrl: response.data.secure_url, uploading: false }))
+        .then(response => this.setState({ imageUrl: response.data.secure_url, uploading:false }))
         .catch(err => console.log(err))
   }
 
@@ -49,10 +50,12 @@ class ContestantForm extends Component {
   }
 
   swapiSelectorPrinter = () => {
-    if(this.state.swapiAllNames == null) {
+    let apiRequestCounter = 0
+    if((this.state.swapiAllNames == null) && (apiRequestCounter < 3)) {
       this.service.swapiNames()
         .then( res => this.setState({swapiAllNames: res.data.results}))
         .catch(err => console.log('error', err))
+      apiRequestCounter++
     }
   }
 
@@ -75,25 +78,28 @@ class ContestantForm extends Component {
             </Form.Group>
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label className="title">Apellido</Form.Label>
-              <Form.Control name="lastName" type="text" className="form-control" id="input-lasttName" onChange={this.handleChangeInput} placeholder="Rodríguez" required/>
+              <Form.Control name="lastName" type="text" className="form-control" id="input-lasttName" onChange={this.handleChangeInput} maxlength="10" placeholder="Rodríguez" required/>
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
             <Form.Group as={Col} controlId="formGridDateBirth">
               <Form.Label className="title">Fecha de Nacimiento</Form.Label>
-              <Form.Control name="dateBirth" type="date" className="form-control" id="input-dateBirth" onChange={this.handleChangeInput} placeholder="12/05/2000" required/>
+              <Form.Control name="dateBirth" type="date" className="form-control" id="input-dateBirth" onChange={this.handleChangeInput} maxlength="10" placeholder="12/05/2000" required/>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridMobile">
               <Form.Label className="title">Teléfono móvil</Form.Label>
-              <Form.Control name="mobile" type="text" className="form-control" id="input-mobile" onChange={this.handleChangeInput} placeholder="666 555 444" required/>
+              <Form.Control name="mobile" type="text" className="form-control" id="input-mobile" onChange={this.handleChangeInput} maxlength="9" placeholder="666555444" required/>
             </Form.Group>
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridCountry">
+            <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
               <Form.Label className="title">País</Form.Label>
-              <Form.Control name="country" type="text" className="form-control" id="input-country" onChange={this.handleChangeInput} placeholder="España" required/>
+              <Form.Control as="select" name="country" className="" id="input-country" selected={this.state.country} onChange={this.handleChangeInput} required>
+                <option disabled selected value>Selecciona un país</option>
+                <option value="España">España</option>
+              </Form.Control>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label className="title">Email</Form.Label>
@@ -117,7 +123,7 @@ class ContestantForm extends Component {
             </Form.Group>
           </Form.Row>
           <div class="box-button-send">
-            <button type="submit" className="button-form button-send">Enviar</button>
+            {this.state.uploading ? <img src="./spinner01.gif" width="150px" className="imageUploader" alt="Cargando imagen" /> : <button type="submit" className="button-form button-send">Enviar</button>}
           </div>
         </form>
       </>

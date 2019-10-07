@@ -28,14 +28,18 @@ class ContestantCard extends Component {
   render() {
 
     const { _id, firstName, lastName, dateBirth, mobile, country, email, character, imageUrl } = this.props
-    const photo = this.props.imageUrl == '' ? 'http://hdwpro.com/wp-content/uploads/2018/01/3D-Star-Wars.jpg' : imageUrl
+    const photo = this.props.imageUrl === '' ? 'http://hdwpro.com/wp-content/uploads/2018/01/3D-Star-Wars.jpg' : imageUrl
+    const capitalize = (str) => {
+      let lower = str.toLowerCase()
+      return lower.charAt(0).toUpperCase() + lower.slice(1)
+    }
 
       return (
+ 
       <div className='card'>
-
         <img src={photo} alt="Fotografia del concursante" className="photo"/>
         <div className="info-contestant">
-          <h4 className="name-complet-contestant">{firstName} {lastName}</h4>
+          <h4 className="name-complet-contestant">{capitalize(firstName)} {capitalize(lastName)}</h4>
           <p className="data">Personaje elegido: {character}</p>
           <hr></hr>
           <p>Datos personales:</p>
@@ -58,7 +62,6 @@ class ContestantCard extends Component {
               <div className="colocation">
                 <FontAwesomeIcon icon={faEnvelopeOpen} />
                 <p className="data">{email}</p>
-
               </div>
             </div>
           </div>
@@ -66,7 +69,7 @@ class ContestantCard extends Component {
 
         <Link to={`/edit/${_id}`} className="button-details">Editar</Link>
         <Link key={_id} onClick={this.handleShow} className="button-delete">Eliminar</Link>        
-      
+
         <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar Concursante</Modal.Title>
